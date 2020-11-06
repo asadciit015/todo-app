@@ -1,0 +1,40 @@
+body {
+	background-color: #d9f0ef;
+}
+.main {
+	margin-right: 5%;
+	margin-left: 5%;
+}
+
+.taskListScrolling {
+	height: 510px;
+	overflow: scroll;
+}
+.taskListScrolling::-webkit-scrollbar {
+	display: none;
+}
+.title {
+	color: #346d6a;
+	height: 40px;
+	margin: 10px auto;
+	display: flex;
+	font: 20px Arial, sans-serif;
+	justify-content: space-between;
+}
+.title h3 {
+	position: relative;
+	margin-left: 0px;
+	margin-top: 12px;
+}
+.simpleMenu {
+	position: absolute;
+	right: 2px;
+	float: right;
+	background-color: seashell;
+}
+.footerStyle {
+	position: absolute;
+	bottom: 0px;
+	width: 89%;
+	margin-top: 2px;
+}

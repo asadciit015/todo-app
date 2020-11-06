@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/onepageapp/static/css/main.df0da023.chunk.css",
+    "main.js": "/onepageapp/static/js/main.2f143d53.chunk.js",
+    "main.js.map": "/onepageapp/static/js/main.2f143d53.chunk.js.map",
+    "runtime-main.js": "/onepageapp/static/js/runtime-main.311b8d81.js",
+    "runtime-main.js.map": "/onepageapp/static/js/runtime-main.311b8d81.js.map",
+    "static/js/2.eab164ba.chunk.js": "/onepageapp/static/js/2.eab164ba.chunk.js",
+    "static/js/2.eab164ba.chunk.js.map": "/onepageapp/static/js/2.eab164ba.chunk.js.map",
+    "index.html": "/onepageapp/index.html",
+    "precache-manifest.9a370019803e18dc86011539b44dcf78.js": "/onepageapp/precache-manifest.9a370019803e18dc86011539b44dcf78.js",
+    "service-worker.js": "/onepageapp/service-worker.js",
+    "static/css/main.df0da023.chunk.css.map": "/onepageapp/static/css/main.df0da023.chunk.css.map",
+    "static/js/2.eab164ba.chunk.js.LICENSE.txt": "/onepageapp/static/js/2.eab164ba.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.311b8d81.js",
+    "static/js/2.eab164ba.chunk.js",
+    "static/css/main.df0da023.chunk.css",
+    "static/js/main.2f143d53.chunk.js"
+  ]
+}

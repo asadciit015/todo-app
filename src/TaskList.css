@@ -1,0 +1,42 @@
+.taskList {
+	display: flex;
+	align-items: center;
+	border-radius: 5px;
+	color: black;
+	background-color: white;
+	margin: 1px auto;
+	justify-content: space-between;
+	padding: 8px;
+}
+
+.taskList p {
+	position: relative;
+	margin-left: 40px;
+	margin: 0px;
+	margin-left: 40px;
+	width: -webkit-fill-available;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.TextareaAutosize {
+	background-color: transparent;
+	border: 0;
+	color: black;
+	font: 16px Arial, sans-serif;
+	width: 90%;
+	outline: none;
+	padding: 5px 6px;
+	resize: none;
+}
+.TextareaAutosize:focus {
+	background-color: #ddefef;
+	border-radius: 5px;
+}
+.TrashIcon {
+	line-height: 0;
+	cursor: pointer;
+}
+.TaskCheck {
+	position: absolute;
+}
