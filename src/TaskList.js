@@ -10,7 +10,7 @@ function TaskList(props) {
 
 	return tasksList.map((task) => (
 		<div key={task.key} className='taskList'>
-			<span className='TaskCheck'>
+			<span>
 				<Checkbox
 					checked={task.complete}
 					color='#346D6A'

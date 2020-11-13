@@ -2,13 +2,15 @@ import React from 'react';
 import './App.css';
 import TaskList from './TaskList';
 import SimpleMenu from './components/toggle.js';
+import CustomizedInputBase from './components/searchBar';
 import shortid from 'shortid';
-import ResponsiveDialog from './components/DeleteDialog.jsx';
+import AlertDialogSlide from './components/TaskDeleteDialog.jsx';
 
 //material UI libraries
 import { styled } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import { TextField } from '@material-ui/core';
-// custom styling for TextField
+
 const MyField = styled(TextField)({
 	width: '100%',
 	position: 'relative',
@@ -20,11 +22,16 @@ class App extends React.Component {
 		this.state = {
 			tasks: [],
 			filter: true,
+			search: '',
 			currentTask: {
 				task: '',
 			},
 			open: false,
 			done: false,
+			ascending: false,
+			descending: false,
+			completedTop: false,
+			completedLast: false,
 			selectedTask: {},
 		};
 	}
@@ -39,7 +46,6 @@ class App extends React.Component {
 			},
 		});
 	};
-
 	// function to add task which user inputs
 	addTask = (e) => {
 		e.preventDefault();
@@ -72,7 +78,7 @@ class App extends React.Component {
 	// function to edit the task
 	setUpdates = (text, id) => {
 		const tasks = this.state.tasks;
-		tasks.map((task) => {
+		tasks.forEach((task) => {
 			if (task.id === id) {
 				task.task = text;
 				task.done = true;
@@ -110,11 +116,86 @@ class App extends React.Component {
 			open: true,
 		});
 	};
-
+	// function for search Task
+	searchTask = (e) => {
+		this.setState({ search: e.target.value });
+	};
+	// function to sort tasks in ascending way
+	sortingTaskAscending = () => {
+		this.setState({
+			ascending: !this.state.ascending,
+		});
+	};
+	// function to sort tasks in descending way
+	sortingTaskDescending = () => {
+		this.setState({
+			descending: !this.state.descending,
+		});
+	};
+	sortingCompletedTop = () => {
+		this.setState({
+			completedTop: !this.completedTop,
+		});
+	};
+	sortingCompletedLast = () => {
+		this.setState({
+			completedLast: !this.completedLast,
+		});
+	};
 	render() {
 		let tasksList = this.state.tasks;
+
 		if (!this.state.filter) {
 			tasksList = this.state.tasks.filter((task) => !task.complete);
+		}
+		if (this.state.search !== '') {
+			tasksList = tasksList.filter((task) =>
+				task.task.includes(this.state.search)
+			);
+		}
+		if (this.state.descending) {
+			let temp = [...this.state.tasks];
+			temp = temp.sort((a, b) => b.task.localeCompare(a.task));
+			this.setState({
+				tasks: temp,
+				descending: false,
+			});
+		}
+		if (this.state.ascending) {
+			let temp = [...this.state.tasks];
+			temp = temp.sort((a, b) => a.task.localeCompare(b.task));
+			this.setState({
+				tasks: temp,
+				ascending: false,
+			});
+		}
+		if (this.state.completedTop) {
+			let temp = [...this.state.tasks];
+			let completedTasks = temp
+				.filter((task) => task.complete === true)
+				.sort((a, b) => a.task.localeCompare(b.task));
+			let inCompletedTasks = temp
+				.filter((task) => task.complete === false)
+				.sort((a, b) => a.task.localeCompare(b.task));
+			let tasksList = [...new Set([...completedTasks, ...inCompletedTasks])];
+			this.setState({
+				tasks: tasksList,
+				completedTop: false,
+			});
+		}
+		if (this.state.completedLast) {
+			let temp = [...this.state.tasks];
+			let completedTasks = temp
+				.filter((task) => task.complete === true)
+				.sort((a, b) => a.task.localeCompare(b.task));
+			let inCompletedTasks = temp
+				.filter((task) => task.complete === false)
+				.sort((a, b) => a.task.localeCompare(b.task));
+			let tasksList = [...new Set([...inCompletedTasks, ...completedTasks])];
+			this.setState({
+				tasks: tasksList,
+				completedLast: false,
+			});
 		}
 
 		return (
@@ -122,10 +203,15 @@ class App extends React.Component {
 				{/* main header */}
 				<header>
 					<div className='title'>
-						<h3>My Todo List</h3>
+						<Typography variant='h6'> My Todo List</Typography>
+						<CustomizedInputBase searchTask={this.searchTask} />
 						<SimpleMenu
 							updateTasksToShow={this.updateTasksToShow}
 							filter={this.state.filter}
+							sortingTaskAscending={this.sortingTaskAscending}
+							sortingTaskDescending={this.sortingTaskDescending}
+							sortingCompletedTop={this.sortingCompletedTop}
+							sortingCompletedLast={this.sortingCompletedLast}
 						/>
 					</div>
 				</header>
@@ -142,7 +228,7 @@ class App extends React.Component {
 					></TaskList>
 				</div>
 				{this.state.open && (
-					<ResponsiveDialog
+					<AlertDialogSlide
 						DeleteTask={this.DeleteTask}
 						open={this.state.open}
 						selectedTask={this.state.selectedTask}

@@ -6,14 +6,13 @@
 	background-color: white;
 	margin: 1px auto;
 	justify-content: space-between;
-	padding: 8px;
+	padding: 3px;
 }
 
 .taskList p {
 	position: relative;
 	margin-left: 40px;
 	margin: 0px;
-	margin-left: 40px;
 	width: -webkit-fill-available;
 	display: flex;
 	align-items: center;
@@ -36,7 +35,4 @@
 .TrashIcon {
 	line-height: 0;
 	cursor: pointer;
-}
-.TaskCheck {
-	position: absolute;
 }
